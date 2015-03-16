@@ -44,10 +44,14 @@ DateTimeField = React.createClass({
     };
   },
   componentWillReceiveProps: function(nextProps) {
+    var dateTime = nextProps.dateTime;
+    if (!moment(dateTime, nextProps.format).isValid()) {
+      dateTime = moment().format(nextProps.format);
+    }
     return this.setState({
-      viewDate: moment(nextProps.dateTime, nextProps.format).startOf("month"),
-      selectedDate: moment(nextProps.dateTime, nextProps.format),
-      inputValue: moment(nextProps.dateTime, nextProps.format).format(nextProps.inputFormat)
+      viewDate: moment(dateTime, nextProps.format).startOf("month"),
+      selectedDate: moment(dateTime, nextProps.format),
+      inputValue: nextProps.dateTime
     });
   },
   onChange: function(event) {
@@ -67,8 +71,9 @@ DateTimeField = React.createClass({
     
   },
   setSelectedDate: function(e) {
+
     return this.setState({
-      selectedDate: this.state.viewDate.clone().date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
+      selectedDate: moment().date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
     }, function() {
       this.closePicker();
       this.props.onChange(this.state.selectedDate.format(this.props.format));
