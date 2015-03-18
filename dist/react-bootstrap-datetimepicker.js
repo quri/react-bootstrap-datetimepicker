@@ -84,6 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      format: 'X',
 	      inputFormat: "MM/DD/YY H:mm A",
 	      showToday: true,
+	      viewMode: 'days',
 	      daysOfWeekDisabled: [],
 	      onChange: function (x) {
 	        console.log(x);
@@ -292,6 +293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var style;
 	    style = this.state.widgetStyle;
 	    style['left'] = -9999;
+	    style['display'] = 'none';
 	    return this.setState({
 	      showPicker: false,
 	      widgetStyle: style
@@ -325,6 +327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  viewDate: this.state.viewDate, 
 	                  selectedDate: this.state.selectedDate, 
 	                  showToday: this.props.showToday, 
+	                  viewMode: this.props.viewMode, 
 	                  daysOfWeekDisabled: this.props.daysOfWeekDisabled, 
 	                  addDecade: this.addDecade, 
 	                  addYear: this.addYear, 
@@ -397,6 +400,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    viewDate: React.PropTypes.object.isRequired,
 	    selectedDate: React.PropTypes.object.isRequired,
 	    showToday: React.PropTypes.bool,
+	    viewMode: React.PropTypes.oneOfType([
+	      React.PropTypes.string,
+	      React.PropTypes.number
+	    ]),
 	    daysOfWeekDisabled: React.PropTypes.array,
 	    setSelectedDate: React.PropTypes.func.isRequired,
 	    subtractYear: React.PropTypes.func.isRequired,
@@ -422,6 +429,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              viewDate: this.props.viewDate, 
 	              selectedDate: this.props.selectedDate, 
 	              showToday: this.props.showToday, 
+	              viewMode: this.props.viewMode, 
 	              daysOfWeekDisabled: this.props.daysOfWeekDisabled, 
 	              subtractYear: this.props.subtractYear, 
 	              addYear: this.props.addYear, 
@@ -499,6 +507,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    viewDate: React.PropTypes.object.isRequired,
 	    selectedDate: React.PropTypes.object.isRequired,
 	    showToday: React.PropTypes.bool,
+	    viewMode: React.PropTypes.oneOfType([
+	      React.PropTypes.string,
+	      React.PropTypes.number
+	    ]),
 	    daysOfWeekDisabled: React.PropTypes.array,
 	    setSelectedDate: React.PropTypes.func.isRequired,
 	    subtractYear: React.PropTypes.func.isRequired,
@@ -509,11 +521,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    subtractDecade: React.PropTypes.func.isRequired
 	  },
 	  getInitialState: function() {
-	    return {
-	      daysDisplayed: true,
-	      monthsDisplayed: false,
-	      yearsDisplayed: false
+	    var viewModes = {
+	      'days': {
+	        daysDisplayed: true,
+	        monthsDisplayed: false,
+	        yearsDisplayed: false
+	      }, 
+	      'months': {
+	        daysDisplayed: false,
+	        monthsDisplayed: true,
+	        yearsDisplayed: false
+	      }, 
+	      'years': {
+	        daysDisplayed: false,
+	        monthsDisplayed: false,
+	        yearsDisplayed: true
+	      }
 	    };
+	    return viewModes[this.props.viewMode] || viewModes[Object.keys(viewModes)[this.props.viewMode]] || viewModes['days'];
 	  },
 	  showMonths: function() {
 	    return this.setState({
