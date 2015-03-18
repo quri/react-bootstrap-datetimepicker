@@ -44,40 +44,37 @@ DateTimeField = React.createClass({
       },
       viewDate: moment(dateTime, this.props.format).startOf("month"),
       selectedDate: moment(dateTime, this.props.format),
-      inputValue: moment(this.props.dateTime, this.props.format).format(this.props.inputFormat)
+      inputValue: moment(dateTime, this.props.format).format(this.props.inputFormat)
     };
   },
   componentWillReceiveProps: function(nextProps) {
-    var dateTime = nextProps.dateTime;
-    if (!moment(dateTime, nextProps.format).isValid()) {
-      dateTime = moment().format(nextProps.format);
+    if (moment(nextProps.dateTime, nextProps.format).isValid()) {
+      return this.setState({
+        viewDate: moment(nextProps.dateTime, nextProps.format).startOf("month"),
+        selectedDate: moment(nextProps.dateTime, nextProps.format),
+        inputValue: moment(nextProps.dateTime, nextProps.inputFormat)
+      });
     }
-    return this.setState({
-      viewDate: moment(dateTime, nextProps.format).startOf("month"),
-      selectedDate: moment(dateTime, nextProps.format),
-      inputValue: nextProps.dateTime
-    });
   },
   onChange: function(event) {
-    if (moment(event.target.value, this.props.format).isValid()) {
+    if (moment(event.target.value, this.props.inputFormat).isValid()) {
       this.setState({
-        selectedDate: moment(event.target.value, this.props.format),
+        selectedDate: moment(event.target.value, this.props.inputFormat),
+        viewDate: moment(event.target.value, this.props.inputFormat).startOf("month")
+      }, function() {
+        return this.props.onChange(this.state.selectedDate.format(this.props.format));
       });
-    } else {
-      console.log("This is not a valid date");
     }
 
     this.setState({
       inputValue: event.target.value
-    }, function() {
-      return this.props.onChange(this.state.selectedDate.format(this.props.format));
     });
-    
+
   },
   setSelectedDate: function(e) {
 
     return this.setState({
-      selectedDate: moment().date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
+      selectedDate: this.state.viewDate.clone().date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
     }, function() {
       this.closePicker();
       this.props.onChange(this.state.selectedDate.format(this.props.format));
