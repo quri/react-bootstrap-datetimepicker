@@ -72,6 +72,9 @@ DateTimeField = React.createClass({
     });
 
   },
+  getValue: function() {
+    return moment(this.state.inputValue, this.props.inputFormat, true).format(this.props.format);
+  },
   setSelectedDate: function(e) {
     if (e.target.className && !e.target.className.match(/disabled/g)) {
       return this.setState({
