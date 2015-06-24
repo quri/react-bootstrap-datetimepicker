@@ -50,6 +50,7 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
+    "classnames": "^2.1.2",
     "moment": "^2.8.2",
     "react-bootstrap": "^0.16.1"
   }
