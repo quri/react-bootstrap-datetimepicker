@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"), require("ReactBootstrap"), require("moment"));
+		module.exports = factory(require("React"), require("moment"), require("ReactBootstrap"));
 	else if(typeof define === 'function' && define.amd)
-		define(["React", "ReactBootstrap", "moment"], factory);
+		define(["React", "moment", "ReactBootstrap"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactBootstrapDatetimepicker"] = factory(require("React"), require("ReactBootstrap"), require("moment"));
+		exports["ReactBootstrapDatetimepicker"] = factory(require("React"), require("moment"), require("ReactBootstrap"));
 	else
-		root["ReactBootstrapDatetimepicker"] = factory(root["React"], root["ReactBootstrap"], root["moment"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_7__) {
+		root["ReactBootstrapDatetimepicker"] = factory(root["React"], root["moment"], root["ReactBootstrap"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,13 +65,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	React = __webpack_require__(2);
 
-	DateTimePicker = __webpack_require__(3);
+	DateTimePicker = __webpack_require__(5);
 
-	moment = __webpack_require__(7);
+	moment = __webpack_require__(3);
 
 	var Glyphicon = __webpack_require__(4).Glyphicon;
 
-	var Constants = __webpack_require__(13);
+	var Constants = __webpack_require__(6);
 
 	DateTimeField = React.createClass({displayName: "DateTimeField",
 	  propTypes: {
@@ -160,8 +160,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var target = e.target;
 	    if (target.className && !target.className.match(/disabled/g)) {
 	      var month;
-	      if(target.className.indexOf("new") >= 0) month = this.state.viewDate.month() + 1;
-	      else if(target.className.indexOf("old") >= 0) month = this.state.viewDate.month() - 1;
+	      if(target.className.includes("new")) month = this.state.viewDate.month() + 1;
+	      else if(target.className.includes("old")) month = this.state.viewDate.month() - 1;
 	      else month = this.state.viewDate.month();
 	      return this.setState({
 	        selectedDate: this.state.viewDate.clone().month(month).date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
@@ -408,7 +408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
@@ -416,19 +416,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var DateTimePicker, DateTimePickerDate, DateTimePickerTime, Glyphicon, React;
 
 	React = __webpack_require__(2);
 
-	DateTimePickerDate = __webpack_require__(5);
+	DateTimePickerDate = __webpack_require__(7);
 
-	DateTimePickerTime = __webpack_require__(11);
+	DateTimePickerTime = __webpack_require__(8);
 
 	var Glyphicon = __webpack_require__(4).Glyphicon;
 
-	var Constants = __webpack_require__(13);
-
-	var classnames = __webpack_require__(8);
+	var Constants = __webpack_require__(6);
 
 	DateTimePicker = React.createClass({displayName: "DateTimePicker",
 	  propTypes: {
@@ -517,7 +527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  render: function() {
 	    return (
-	      React.createElement("div", {className: classnames(this.props.widgetClasses), style: this.props.widgetStyle}, 
+	      React.createElement("div", {className: React.addons.classSet(this.props.widgetClasses), style: this.props.widgetStyle}, 
 
 	        React.createElement("ul", {className: "list-unstyled"}, 
 
@@ -539,24 +549,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 4 */
-/***/ function(module, exports) {
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+	module.exports = {
+	    MODE_DATE: 'date',
+	    MODE_DATETIME: 'datetime',
+	    MODE_TIME: 'time'
+	};
 
 /***/ },
-/* 5 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var DateTimePickerDate, DateTimePickerDays, DateTimePickerMonths, DateTimePickerYears, React;
 
 	React = __webpack_require__(2);
 
-	DateTimePickerDays = __webpack_require__(6);
+	DateTimePickerDays = __webpack_require__(9);
 
-	DateTimePickerMonths = __webpack_require__(9);
+	DateTimePickerMonths = __webpack_require__(10);
 
-	DateTimePickerYears = __webpack_require__(10);
+	DateTimePickerYears = __webpack_require__(11);
 
 	DateTimePickerDate = React.createClass({displayName: "DateTimePickerDate",
 	  propTypes: {
@@ -694,327 +708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var DateTimePickerDays, React, moment;
-
-	React = __webpack_require__(2);
-
-	moment = __webpack_require__(7);
-
-	var classnames = __webpack_require__(8);
-
-	DateTimePickerDays = React.createClass({displayName: "DateTimePickerDays",
-	  propTypes: {
-	    subtractMonth: React.PropTypes.func.isRequired,
-	    addMonth: React.PropTypes.func.isRequired,
-	    viewDate: React.PropTypes.object.isRequired,
-	    selectedDate: React.PropTypes.object.isRequired,
-	    showToday: React.PropTypes.bool,
-	    daysOfWeekDisabled: React.PropTypes.array,
-	    setSelectedDate: React.PropTypes.func.isRequired,
-	    showMonths: React.PropTypes.func.isRequired,
-	    minDate: React.PropTypes.object,
-	    maxDate: React.PropTypes.object
-	  },
-	  getDefaultProps: function() {
-	    return {
-	      showToday: true
-	    };
-	  },
-	  renderDays: function() {
-	    var cells, classes, days, html, i, month, nextMonth, prevMonth, minDate, maxDate, row, year, _i, _len, _ref;
-	    year = this.props.viewDate.year();
-	    month = this.props.viewDate.month();
-	    prevMonth = this.props.viewDate.clone().subtract(1, "months");
-	    days = prevMonth.daysInMonth();
-	    prevMonth.date(days).startOf('week');
-	    nextMonth = moment(prevMonth).clone().add(42, "d");
-	    minDate = this.props.minDate ? this.props.minDate.clone().subtract(1, 'days') : this.props.minDate;
-	    maxDate = this.props.maxDate ? this.props.maxDate.clone() : this.props.maxDate;
-	    html = [];
-	    cells = [];
-	    while (prevMonth.isBefore(nextMonth)) {
-	      classes = {
-	        day: true
-	      };
-	      if (prevMonth.year() < year || (prevMonth.year() === year && prevMonth.month() < month)) {
-	        classes['old'] = true;
-	      } else if (prevMonth.year() > year || (prevMonth.year() === year && prevMonth.month() > month)) {
-	        classes['new'] = true;
-	      }
-	      if (prevMonth.isSame(moment({
-	        y: this.props.selectedDate.year(),
-	        M: this.props.selectedDate.month(),
-	        d: this.props.selectedDate.date()
-	      }))) {
-	        classes['active'] = true;
-	      }
-	      if (this.props.showToday) {
-	        if (prevMonth.isSame(moment(), 'day')) {
-	          classes['today'] = true;
-	        }
-	      }
-	      if ((minDate && prevMonth.isBefore(minDate)) || (maxDate && prevMonth.isAfter(maxDate))) {
-	        classes['disabled'] = true;
-	      }
-	      if (this.props.daysOfWeekDisabled) {
-	        _ref = this.props.daysOfWeekDisabled;
-	        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-	          i = _ref[_i];
-	          if (prevMonth.day() === this.props.daysOfWeekDisabled[i]) {
-	            classes['disabled'] = true;
-	            break;
-	          }
-	        }
-	      }
-	      cells.push(React.createElement("td", {key: prevMonth.month() + '-' + prevMonth.date(), className: classnames(classes), onClick: this.props.setSelectedDate}, prevMonth.date()));
-	      if (prevMonth.weekday() === moment().endOf('week').weekday()) {
-	        row = React.createElement("tr", {key: prevMonth.month() + '-' + prevMonth.date()}, cells);
-	        html.push(row);
-	        cells = [];
-	      }
-	      prevMonth.add(1, "d");
-	    }
-	    return html;
-	  },
-	  render: function() {
-	    return (
-	    React.createElement("div", {className: "datepicker-days", style: {display: 'block'}}, 
-	        React.createElement("table", {className: "table-condensed"}, 
-	          React.createElement("thead", null, 
-	            React.createElement("tr", null, 
-	              React.createElement("th", {className: "prev", onClick: this.props.subtractMonth}, "‹"), 
-
-	              React.createElement("th", {className: "switch", colSpan: "5", onClick: this.props.showMonths}, moment.months()[this.props.viewDate.month()], " ", this.props.viewDate.year()), 
-
-	              React.createElement("th", {className: "next", onClick: this.props.addMonth}, "›")
-	            ), 
-
-	            React.createElement("tr", null, 
-	              React.createElement("th", {className: "dow"}, "Su"), 
-
-	              React.createElement("th", {className: "dow"}, "Mo"), 
-
-	              React.createElement("th", {className: "dow"}, "Tu"), 
-
-	              React.createElement("th", {className: "dow"}, "We"), 
-
-	              React.createElement("th", {className: "dow"}, "Th"), 
-
-	              React.createElement("th", {className: "dow"}, "Fr"), 
-
-	              React.createElement("th", {className: "dow"}, "Sa")
-	            )
-	          ), 
-
-	          React.createElement("tbody", null, 
-	            this.renderDays()
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = DateTimePickerDays;
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
-
-/***/ },
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-
-	(function () {
-		'use strict';
-
-		function classNames () {
-
-			var classes = '';
-
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
-
-				var argType = typeof arg;
-
-				if ('string' === argType || 'number' === argType) {
-					classes += ' ' + arg;
-
-				} else if (Array.isArray(arg)) {
-					classes += ' ' + classNames.apply(null, arg);
-
-				} else if ('object' === argType) {
-					for (var key in arg) {
-						if (arg.hasOwnProperty(key) && arg[key]) {
-							classes += ' ' + key;
-						}
-					}
-				}
-			}
-
-			return classes.substr(1);
-		}
-
-		if (true) {
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else {
-			window.classNames = classNames;
-		}
-
-	}());
-
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var DateTimePickerMonths, React, moment;
-
-	React = __webpack_require__(2);
-
-	moment = __webpack_require__(7);
-
-	var classnames = __webpack_require__(8);
-
-	DateTimePickerMonths = React.createClass({displayName: "DateTimePickerMonths",
-	  propTypes: {
-	    subtractYear: React.PropTypes.func.isRequired,
-	    addYear: React.PropTypes.func.isRequired,
-	    viewDate: React.PropTypes.object.isRequired,
-	    selectedDate: React.PropTypes.object.isRequired,
-	    showYears: React.PropTypes.func.isRequired,
-	    setViewMonth: React.PropTypes.func.isRequired
-	  },
-	  renderMonths: function() {
-	    var classes, i, month, months, monthsShort;
-	    month = this.props.selectedDate.month();
-	    monthsShort = moment.monthsShort();
-	    i = 0;
-	    months = [];
-	    while (i < 12) {
-	      classes = {
-	        month: true,
-	        'active': i === month && this.props.viewDate.year() === this.props.selectedDate.year()
-	      };
-	      months.push(React.createElement("span", {key: i, className: classnames(classes), onClick: this.props.setViewMonth}, monthsShort[i]));
-	      i++;
-	    }
-	    return months;
-	  },
-	  render: function() {
-	    return (
-	    React.createElement("div", {className: "datepicker-months", style: {display: 'block'}}, 
-	          React.createElement("table", {className: "table-condensed"}, 
-	            React.createElement("thead", null, 
-	              React.createElement("tr", null, 
-	                React.createElement("th", {className: "prev", onClick: this.props.subtractYear}, "‹"), 
-
-	                React.createElement("th", {className: "switch", colSpan: "5", onClick: this.props.showYears}, this.props.viewDate.year()), 
-
-	                React.createElement("th", {className: "next", onClick: this.props.addYear}, "›")
-	              )
-	            ), 
-
-	            React.createElement("tbody", null, 
-	              React.createElement("tr", null, 
-	                React.createElement("td", {colSpan: "7"}, this.renderMonths())
-	              )
-	            )
-	          )
-	        )
-	    );
-	  }
-	});
-
-	module.exports = DateTimePickerMonths;
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var DateTimePickerYears, React;
-
-	React = __webpack_require__(2);
-
-	var classnames = __webpack_require__(8);
-
-	DateTimePickerYears = React.createClass({displayName: "DateTimePickerYears",
-	  propTypes: {
-	    subtractDecade: React.PropTypes.func.isRequired,
-	    addDecade: React.PropTypes.func.isRequired,
-	    viewDate: React.PropTypes.object.isRequired,
-	    selectedDate: React.PropTypes.object.isRequired,
-	    setViewYear: React.PropTypes.func.isRequired
-	  },
-	  renderYears: function() {
-	    var classes, i, year, years;
-	    years = [];
-	    year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
-	    year--;
-	    i = -1;
-	    while (i < 11) {
-	      classes = {
-	        year: true,
-	        old: i === -1 | i === 10,
-	        active: this.props.selectedDate.year() === year
-	      };
-	      years.push(React.createElement("span", {key: year, className: classnames(classes), onClick: this.props.setViewYear}, year));
-	      year++;
-	      i++;
-	    }
-	    return years;
-	  },
-	  render: function() {
-	    var year;
-	    year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
-	    return (
-	      React.createElement("div", {className: "datepicker-years", style: {display: "block"}}, 
-	        React.createElement("table", {className: "table-condensed"}, 
-	          React.createElement("thead", null, 
-	            React.createElement("tr", null, 
-	              React.createElement("th", {className: "prev", onClick: this.props.subtractDecade}, "‹"), 
-
-	              React.createElement("th", {className: "switch", colSpan: "5"}, year, " - ", year+9), 
-
-	              React.createElement("th", {className: "next", onClick: this.props.addDecade}, "›")
-	            )
-	          ), 
-
-	          React.createElement("tbody", null, 
-	            React.createElement("tr", null, 
-	              React.createElement("td", {colSpan: "7"}, this.renderYears())
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = DateTimePickerYears;
-
-
-/***/ },
-/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var DateTimePickerHours, DateTimePickerMinutes, DateTimePickerTime, Glyphicon, React;
@@ -1023,11 +717,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	DateTimePickerMinutes = __webpack_require__(12);
 
-	DateTimePickerHours = __webpack_require__(14);
+	DateTimePickerHours = __webpack_require__(13);
 
 	var Glyphicon = __webpack_require__(4).Glyphicon;
 
-	var Constants = __webpack_require__(13);
+	var Constants = __webpack_require__(6);
 
 	DateTimePickerTime = React.createClass({displayName: "DateTimePickerTime",
 	  propTypes: {
@@ -1140,6 +834,259 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var DateTimePickerDays, React, moment;
+
+	React = __webpack_require__(2);
+
+	moment = __webpack_require__(3);
+
+	DateTimePickerDays = React.createClass({displayName: "DateTimePickerDays",
+	  propTypes: {
+	    subtractMonth: React.PropTypes.func.isRequired,
+	    addMonth: React.PropTypes.func.isRequired,
+	    viewDate: React.PropTypes.object.isRequired,
+	    selectedDate: React.PropTypes.object.isRequired,
+	    showToday: React.PropTypes.bool,
+	    daysOfWeekDisabled: React.PropTypes.array,
+	    setSelectedDate: React.PropTypes.func.isRequired,
+	    showMonths: React.PropTypes.func.isRequired,
+	    minDate: React.PropTypes.object,
+	    maxDate: React.PropTypes.object
+	  },
+	  getDefaultProps: function() {
+	    return {
+	      showToday: true
+	    };
+	  },
+	  renderDays: function() {
+	    var cells, classes, days, html, i, month, nextMonth, prevMonth, minDate, maxDate, row, year, _i, _len, _ref;
+	    year = this.props.viewDate.year();
+	    month = this.props.viewDate.month();
+	    prevMonth = this.props.viewDate.clone().subtract(1, "months");
+	    days = prevMonth.daysInMonth();
+	    prevMonth.date(days).startOf('week');
+	    nextMonth = moment(prevMonth).clone().add(42, "d");
+	    minDate = this.props.minDate ? this.props.minDate.clone().subtract(1, 'days') : this.props.minDate;
+	    maxDate = this.props.maxDate ? this.props.maxDate.clone() : this.props.maxDate;
+	    html = [];
+	    cells = [];
+	    while (prevMonth.isBefore(nextMonth)) {
+	      classes = {
+	        day: true
+	      };
+	      if (prevMonth.year() < year || (prevMonth.year() === year && prevMonth.month() < month)) {
+	        classes['old'] = true;
+	      } else if (prevMonth.year() > year || (prevMonth.year() === year && prevMonth.month() > month)) {
+	        classes['new'] = true;
+	      }
+	      if (prevMonth.isSame(moment({
+	        y: this.props.selectedDate.year(),
+	        M: this.props.selectedDate.month(),
+	        d: this.props.selectedDate.date()
+	      }))) {
+	        classes['active'] = true;
+	      }
+	      if (this.props.showToday) {
+	        if (prevMonth.isSame(moment(), 'day')) {
+	          classes['today'] = true;
+	        }
+	      }
+	      if ((minDate && prevMonth.isBefore(minDate)) || (maxDate && prevMonth.isAfter(maxDate))) {
+	        classes['disabled'] = true;
+	      }
+	      if (this.props.daysOfWeekDisabled) {
+	        _ref = this.props.daysOfWeekDisabled;
+	        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+	          i = _ref[_i];
+	          if (prevMonth.day() === this.props.daysOfWeekDisabled[i]) {
+	            classes['disabled'] = true;
+	            break;
+	          }
+	        }
+	      }
+	      cells.push(React.createElement("td", {key: prevMonth.month() + '-' + prevMonth.date(), className: React.addons.classSet(classes), onClick: this.props.setSelectedDate}, prevMonth.date()));
+	      if (prevMonth.weekday() === moment().endOf('week').weekday()) {
+	        row = React.createElement("tr", {key: prevMonth.month() + '-' + prevMonth.date()}, cells);
+	        html.push(row);
+	        cells = [];
+	      }
+	      prevMonth.add(1, "d");
+	    }
+	    return html;
+	  },
+	  render: function() {
+	    return (
+	    React.createElement("div", {className: "datepicker-days", style: {display: 'block'}}, 
+	        React.createElement("table", {className: "table-condensed"}, 
+	          React.createElement("thead", null, 
+	            React.createElement("tr", null, 
+	              React.createElement("th", {className: "prev", onClick: this.props.subtractMonth}, "‹"), 
+
+	              React.createElement("th", {className: "switch", colSpan: "5", onClick: this.props.showMonths}, moment.months()[this.props.viewDate.month()], " ", this.props.viewDate.year()), 
+
+	              React.createElement("th", {className: "next", onClick: this.props.addMonth}, "›")
+	            ), 
+
+	            React.createElement("tr", null, 
+	              React.createElement("th", {className: "dow"}, "Su"), 
+
+	              React.createElement("th", {className: "dow"}, "Mo"), 
+
+	              React.createElement("th", {className: "dow"}, "Tu"), 
+
+	              React.createElement("th", {className: "dow"}, "We"), 
+
+	              React.createElement("th", {className: "dow"}, "Th"), 
+
+	              React.createElement("th", {className: "dow"}, "Fr"), 
+
+	              React.createElement("th", {className: "dow"}, "Sa")
+	            )
+	          ), 
+
+	          React.createElement("tbody", null, 
+	            this.renderDays()
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = DateTimePickerDays;
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var DateTimePickerMonths, React, moment;
+
+	React = __webpack_require__(2);
+
+	moment = __webpack_require__(3);
+
+	DateTimePickerMonths = React.createClass({displayName: "DateTimePickerMonths",
+	  propTypes: {
+	    subtractYear: React.PropTypes.func.isRequired,
+	    addYear: React.PropTypes.func.isRequired,
+	    viewDate: React.PropTypes.object.isRequired,
+	    selectedDate: React.PropTypes.object.isRequired,
+	    showYears: React.PropTypes.func.isRequired,
+	    setViewMonth: React.PropTypes.func.isRequired
+	  },
+	  renderMonths: function() {
+	    var classes, i, month, months, monthsShort;
+	    month = this.props.selectedDate.month();
+	    monthsShort = moment.monthsShort();
+	    i = 0;
+	    months = [];
+	    while (i < 12) {
+	      classes = {
+	        month: true,
+	        'active': i === month && this.props.viewDate.year() === this.props.selectedDate.year()
+	      };
+	      months.push(React.createElement("span", {key: i, className: React.addons.classSet(classes), onClick: this.props.setViewMonth}, monthsShort[i]));
+	      i++;
+	    }
+	    return months;
+	  },
+	  render: function() {
+	    return (
+	    React.createElement("div", {className: "datepicker-months", style: {display: 'block'}}, 
+	          React.createElement("table", {className: "table-condensed"}, 
+	            React.createElement("thead", null, 
+	              React.createElement("tr", null, 
+	                React.createElement("th", {className: "prev", onClick: this.props.subtractYear}, "‹"), 
+
+	                React.createElement("th", {className: "switch", colSpan: "5", onClick: this.props.showYears}, this.props.viewDate.year()), 
+
+	                React.createElement("th", {className: "next", onClick: this.props.addYear}, "›")
+	              )
+	            ), 
+
+	            React.createElement("tbody", null, 
+	              React.createElement("tr", null, 
+	                React.createElement("td", {colSpan: "7"}, this.renderMonths())
+	              )
+	            )
+	          )
+	        )
+	    );
+	  }
+	});
+
+	module.exports = DateTimePickerMonths;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var DateTimePickerYears, React;
+
+	React = __webpack_require__(2);
+
+	DateTimePickerYears = React.createClass({displayName: "DateTimePickerYears",
+	  propTypes: {
+	    subtractDecade: React.PropTypes.func.isRequired,
+	    addDecade: React.PropTypes.func.isRequired,
+	    viewDate: React.PropTypes.object.isRequired,
+	    selectedDate: React.PropTypes.object.isRequired,
+	    setViewYear: React.PropTypes.func.isRequired
+	  },
+	  renderYears: function() {
+	    var classes, i, year, years;
+	    years = [];
+	    year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
+	    year--;
+	    i = -1;
+	    while (i < 11) {
+	      classes = {
+	        year: true,
+	        old: i === -1 | i === 10,
+	        active: this.props.selectedDate.year() === year
+	      };
+	      years.push(React.createElement("span", {key: year, className: React.addons.classSet(classes), onClick: this.props.setViewYear}, year));
+	      year++;
+	      i++;
+	    }
+	    return years;
+	  },
+	  render: function() {
+	    var year;
+	    year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
+	    return (
+	      React.createElement("div", {className: "datepicker-years", style: {display: "block"}}, 
+	        React.createElement("table", {className: "table-condensed"}, 
+	          React.createElement("thead", null, 
+	            React.createElement("tr", null, 
+	              React.createElement("th", {className: "prev", onClick: this.props.subtractDecade}, "‹"), 
+
+	              React.createElement("th", {className: "switch", colSpan: "5"}, year, " - ", year+9), 
+
+	              React.createElement("th", {className: "next", onClick: this.props.addDecade}, "›")
+	            )
+	          ), 
+
+	          React.createElement("tbody", null, 
+	            React.createElement("tr", null, 
+	              React.createElement("td", {colSpan: "7"}, this.renderYears())
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = DateTimePickerYears;
+
+
+/***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1147,7 +1094,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	React = __webpack_require__(2);
 	var Glyphicon = __webpack_require__(4).Glyphicon;
-	var Constants = __webpack_require__(13);
+	var Constants = __webpack_require__(6);
 	  
 	DateTimePickerMinutes = React.createClass({displayName: "DateTimePickerMinutes",
 	  propTypes: {
@@ -1212,23 +1159,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 13 */
-/***/ function(module, exports) {
-
-	module.exports = {
-	    MODE_DATE: 'date',
-	    MODE_DATETIME: 'datetime',
-	    MODE_TIME: 'time'
-	};
-
-/***/ },
-/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var DateTimePickerHours, React;
 
 	React = __webpack_require__(2);
 	var Glyphicon = __webpack_require__(4).Glyphicon;
-	var Constants = __webpack_require__(13);
+	var Constants = __webpack_require__(6);
 
 	DateTimePickerHours = React.createClass({displayName: "DateTimePickerHours",
 	  propTypes: {
