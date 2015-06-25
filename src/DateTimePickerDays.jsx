@@ -4,6 +4,8 @@ React = require('react/addons');
 
 moment = require('moment');
 
+var classnames = require('classnames');
+
 DateTimePickerDays = React.createClass({
   propTypes: {
     subtractMonth: React.PropTypes.func.isRequired,
@@ -68,7 +70,7 @@ DateTimePickerDays = React.createClass({
           }
         }
       }
-      cells.push(<td key={prevMonth.month() + '-' + prevMonth.date()} className={React.addons.classSet(classes)} onClick={this.props.setSelectedDate}>{prevMonth.date()}</td>);
+      cells.push(<td key={prevMonth.month() + '-' + prevMonth.date()} className={classnames(classes)} onClick={this.props.setSelectedDate}>{prevMonth.date()}</td>);
       if (prevMonth.weekday() === moment().endOf('week').weekday()) {
         row = <tr key={prevMonth.month() + '-' + prevMonth.date()}>{cells}</tr>;
         html.push(row);

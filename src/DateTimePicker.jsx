@@ -10,6 +10,8 @@ var Glyphicon = require('react-bootstrap').Glyphicon;
 
 var Constants = require('./Constants');
 
+var classnames = require('classnames');
+
 DateTimePicker = React.createClass({
   propTypes: {
     showDatePicker: React.PropTypes.bool,
@@ -97,7 +99,7 @@ DateTimePicker = React.createClass({
   },
   render: function() {
     return (
-      <div className={React.addons.classSet(this.props.widgetClasses)} style={this.props.widgetStyle}>
+      <div className={classnames(this.props.widgetClasses)} style={this.props.widgetStyle}>
 
         <ul className="list-unstyled">
 

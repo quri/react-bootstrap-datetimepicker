@@ -4,6 +4,8 @@ React = require('react/addons');
 
 moment = require('moment');
 
+var classnames = require('classnames');
+
 DateTimePickerMonths = React.createClass({
   propTypes: {
     subtractYear: React.PropTypes.func.isRequired,
@@ -24,7 +26,7 @@ DateTimePickerMonths = React.createClass({
         month: true,
         'active': i === month && this.props.viewDate.year() === this.props.selectedDate.year()
       };
-      months.push(<span key={i} className={React.addons.classSet(classes)} onClick={this.props.setViewMonth}>{monthsShort[i]}</span>);
+      months.push(<span key={i} className={classnames(classes)} onClick={this.props.setViewMonth}>{monthsShort[i]}</span>);
       i++;
     }
     return months;
