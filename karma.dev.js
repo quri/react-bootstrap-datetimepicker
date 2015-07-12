@@ -1,15 +1,15 @@
 module.exports = function (config) {
   config.set({
 
-    basePath: '',
+    basePath: "",
 
-    frameworks: ['mocha', 'chai'],
+    frameworks: ["mocha", "chai"],
 
     files: [
-      'test_bundle.js'
+      "test_bundle.js"
     ],
 
-    reporters: ['progress'],
+    reporters: ["progress"],
 
     port: 9876,
 
@@ -19,7 +19,7 @@ module.exports = function (config) {
 
     autoWatch: true,
 
-    browsers: ['Chrome'],
+    browsers: ["Chrome"],
 
     captureTimeout: 60000,
 

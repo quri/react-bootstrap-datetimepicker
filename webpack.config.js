@@ -1,4 +1,5 @@
 var webpack = require("webpack");
+var path = require("path");
 
 var plugins = [
   new webpack.DefinePlugin({
@@ -21,9 +22,9 @@ module.exports = {
   entry: ["./src/DateTimeField.js"],
 
   output: {
-    path: __dirname + "/dist/",
+    path: path.join(__dirname, "/dist/"),
     library: "ReactBootstrapDatetimepicker",
-    libraryTarget: "umd",
+    libraryTarget: "umd"
   },
 
   resolve: {
