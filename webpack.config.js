@@ -1,8 +1,8 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 var plugins = [
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
   })
 ];
 
@@ -18,28 +18,28 @@ if (process.env.COMPRESS) {
 
 module.exports = {
 
-  entry: ['./src/DateTimeField.jsx'],
+  entry: ["./src/DateTimeField.js"],
 
   output: {
     path: __dirname + "/dist/",
-    library: 'ReactBootstrapDatetimepicker',
-    libraryTarget: 'umd',
+    library: "ReactBootstrapDatetimepicker",
+    libraryTarget: "umd",
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ["", ".js"]
   },
 
   externals: {
-    'react': 'React',
-    'react/addons': 'React',
-    'react-bootstrap': 'ReactBootstrap',
-    'moment': 'moment'
+    "react": "React",
+    "react/addons": "React",
+    "react-bootstrap": "ReactBootstrap",
+    "moment": "moment"
   },
 
   module: {
     loaders: [
-      { test: /\.jsx$/, loader: 'jsx-loader' }
+      { test: /\.js?$/, exclude: /node_modules/, loader: "babel-loader" }
     ]
   },
 
