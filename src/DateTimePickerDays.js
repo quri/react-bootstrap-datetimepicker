@@ -1,38 +1,34 @@
-var DateTimePickerDays, React, moment;
+import React, { Component, PropTypes } from "react";
+import moment from "moment";
+import classnames from "classnames";
 
-React = require('react/addons');
+export default class DateTimePickerDays extends Component {
+  static propTypes = {
+    subtractMonth: PropTypes.func.isRequired,
+    addMonth: PropTypes.func.isRequired,
+    viewDate: PropTypes.object.isRequired,
+    selectedDate: PropTypes.object.isRequired,
+    showToday: PropTypes.bool,
+    daysOfWeekDisabled: PropTypes.array,
+    setSelectedDate: PropTypes.func.isRequired,
+    showMonths: PropTypes.func.isRequired,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object
+  }
 
-moment = require('moment');
+  static defaultProps = {
+    showToday: true
+  }
 
-var classnames = require('classnames');
-
-DateTimePickerDays = React.createClass({
-  propTypes: {
-    subtractMonth: React.PropTypes.func.isRequired,
-    addMonth: React.PropTypes.func.isRequired,
-    viewDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
-    showToday: React.PropTypes.bool,
-    daysOfWeekDisabled: React.PropTypes.array,
-    setSelectedDate: React.PropTypes.func.isRequired,
-    showMonths: React.PropTypes.func.isRequired,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object
-  },
-  getDefaultProps: function() {
-    return {
-      showToday: true
-    };
-  },
-  renderDays: function() {
+  renderDays = () => {
     var cells, classes, days, html, i, month, nextMonth, prevMonth, minDate, maxDate, row, year, _i, _len, _ref;
     year = this.props.viewDate.year();
     month = this.props.viewDate.month();
     prevMonth = this.props.viewDate.clone().subtract(1, "months");
     days = prevMonth.daysInMonth();
-    prevMonth.date(days).startOf('week');
+    prevMonth.date(days).startOf("week");
     nextMonth = moment(prevMonth).clone().add(42, "d");
-    minDate = this.props.minDate ? this.props.minDate.clone().subtract(1, 'days') : this.props.minDate;
+    minDate = this.props.minDate ? this.props.minDate.clone().subtract(1, "days") : this.props.minDate;
     maxDate = this.props.maxDate ? this.props.maxDate.clone() : this.props.maxDate;
     html = [];
     cells = [];
@@ -41,48 +37,49 @@ DateTimePickerDays = React.createClass({
         day: true
       };
       if (prevMonth.year() < year || (prevMonth.year() === year && prevMonth.month() < month)) {
-        classes['old'] = true;
+        classes.old = true;
       } else if (prevMonth.year() > year || (prevMonth.year() === year && prevMonth.month() > month)) {
-        classes['new'] = true;
+        classes.new = true;
       }
       if (prevMonth.isSame(moment({
         y: this.props.selectedDate.year(),
         M: this.props.selectedDate.month(),
         d: this.props.selectedDate.date()
       }))) {
-        classes['active'] = true;
+        classes.active = true;
       }
       if (this.props.showToday) {
-        if (prevMonth.isSame(moment(), 'day')) {
-          classes['today'] = true;
+        if (prevMonth.isSame(moment(), "day")) {
+          classes.today = true;
         }
       }
       if ((minDate && prevMonth.isBefore(minDate)) || (maxDate && prevMonth.isAfter(maxDate))) {
-        classes['disabled'] = true;
+        classes.disabled = true;
       }
       if (this.props.daysOfWeekDisabled) {
         _ref = this.props.daysOfWeekDisabled;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           i = _ref[_i];
           if (prevMonth.day() === this.props.daysOfWeekDisabled[i]) {
-            classes['disabled'] = true;
+            classes.disabled = true;
             break;
           }
         }
       }
-      cells.push(<td key={prevMonth.month() + '-' + prevMonth.date()} className={classnames(classes)} onClick={this.props.setSelectedDate}>{prevMonth.date()}</td>);
-      if (prevMonth.weekday() === moment().endOf('week').weekday()) {
-        row = <tr key={prevMonth.month() + '-' + prevMonth.date()}>{cells}</tr>;
+      cells.push(<td key={prevMonth.month() + "-" + prevMonth.date()} className={classnames(classes)} onClick={this.props.setSelectedDate}>{prevMonth.date()}</td>);
+      if (prevMonth.weekday() === moment().endOf("week").weekday()) {
+        row = <tr key={prevMonth.month() + "-" + prevMonth.date()}>{cells}</tr>;
         html.push(row);
         cells = [];
       }
       prevMonth.add(1, "d");
     }
     return html;
-  },
-  render: function() {
+  }
+
+  render() {
     return (
-    <div className="datepicker-days" style={{display: 'block'}}>
+    <div className="datepicker-days" style={{display: "block"}}>
         <table className="table-condensed">
           <thead>
             <tr>
@@ -117,6 +114,5 @@ DateTimePickerDays = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = DateTimePickerDays;

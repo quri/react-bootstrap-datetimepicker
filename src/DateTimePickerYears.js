@@ -1,18 +1,16 @@
-var DateTimePickerYears, React;
+import React, { Component, PropTypes } from "react";
+import classnames from "classnames";
 
-React = require('react/addons');
+export default class DateTimePickerYears extends Component {
+  static propTypes = {
+    subtractDecade: PropTypes.func.isRequired,
+    addDecade: PropTypes.func.isRequired,
+    viewDate: PropTypes.object.isRequired,
+    selectedDate: PropTypes.object.isRequired,
+    setViewYear: PropTypes.func.isRequired
+  }
 
-var classnames = require('classnames');
-
-DateTimePickerYears = React.createClass({
-  propTypes: {
-    subtractDecade: React.PropTypes.func.isRequired,
-    addDecade: React.PropTypes.func.isRequired,
-    viewDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
-    setViewYear: React.PropTypes.func.isRequired
-  },
-  renderYears: function() {
+  renderYears = () => {
     var classes, i, year, years;
     years = [];
     year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
@@ -29,8 +27,9 @@ DateTimePickerYears = React.createClass({
       i++;
     }
     return years;
-  },
-  render: function() {
+  }
+
+  render() {
     var year;
     year = parseInt(this.props.viewDate.year() / 10, 10) * 10;
     return (
@@ -40,7 +39,7 @@ DateTimePickerYears = React.createClass({
             <tr>
               <th className="prev" onClick={this.props.subtractDecade}>‹</th>
 
-              <th className="switch" colSpan="5">{year} - {year+9}</th>
+              <th className="switch" colSpan="5">{year} - {year + 9}</th>
 
               <th className="next" onClick={this.props.addDecade}>›</th>
             </tr>
@@ -55,6 +54,5 @@ DateTimePickerYears = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = DateTimePickerYears;

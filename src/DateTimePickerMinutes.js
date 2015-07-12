@@ -1,28 +1,29 @@
-var DateTimePickerMinutes, React;
+import React, { Component, PropTypes } from "react";
+import { Glyphicon } from "react-bootstrap";
+import Constants from "./Constants.js";
 
-React = require('react');
-var Glyphicon = require('react-bootstrap').Glyphicon;
-var Constants = require('./Constants');
-  
-DateTimePickerMinutes = React.createClass({
-  propTypes: {
-    setSelectedMinute: React.PropTypes.func.isRequired,
-    onSwitch: React.PropTypes.func.isRequired
-  },
-  renderSwitchButton: function() {
+export default class DateTimePickerMinutes extends Component {
+  static propTypes = {
+    setSelectedMinute: PropTypes.func.isRequired,
+    onSwitch: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired
+  }
+
+  renderSwitchButton = () => {
     return this.props.mode === Constants.MODE_TIME ?
         (
             <ul className="list-unstyled">
               <li>
-                <span className="btn picker-switch" style={{width:'100%'}} onClick={this.props.onSwitch}><Glyphicon glyph="time" /></span>
+                <span className="btn picker-switch" style={{width: "100%"}} onClick={this.props.onSwitch}><Glyphicon glyph="time" /></span>
               </li>
             </ul>
         ) :
         null;
-  },
-  render: function() {
+  }
+
+  render() {
     return (
-      <div className="timepicker-minutes" data-action="selectMinute" style={{display: 'block'}}>
+      <div className="timepicker-minutes" data-action="selectMinute" style={{display: "block"}}>
         {this.renderSwitchButton()}
         <table className="table-condensed">
           <tbody>
@@ -60,6 +61,5 @@ DateTimePickerMinutes = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = DateTimePickerMinutes;

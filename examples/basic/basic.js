@@ -1,11 +1,12 @@
-var React = require('react/addons');
-var DateTimeField = require('react-bootstrap-datetimepicker');
-var moment = require('moment');
+import React, { Component } from "react";
+import DateTimeField from "react-bootstrap-datetimepicker";
+import moment from "moment";
 
-var Basic = React.createClass({
+class Basic extends Component {
 
-	render: function() {
-		return <div className="container">
+	render() {
+    return (
+          <div className="container">
 						<div className="row">
 							<div className="col-xs-12">
 								<h1>React Bootstrap DateTimePicker</h1>
@@ -42,7 +43,7 @@ var Basic = React.createClass({
 							<div className="col-xs-12">
                 daysOfWeekDisabled
                 <DateTimeField
-                  daysOfWeekDisabled={[0,1,2]}
+                  daysOfWeekDisabled={[0, 1, 2]}
                 />
                 <pre> {'<DateTimeField daysOfWeekDisabled={[0,1,2]} />'} </pre>
 
@@ -52,8 +53,8 @@ var Basic = React.createClass({
 							<div className="col-xs-12">
                 minDate and maxDate
                 <DateTimeField
-                  minDate={moment().subtract(1, 'days')}
-                  maxDate={moment().add(1, 'days')}
+                  maxDate={moment().add(1, "days")}
+                  minDate={moment().subtract(1, "days")}
                 />
                 <pre> {'<DateTimeField daysOfWeekDisabled={[0,1,2]} />'} </pre>
 
@@ -77,11 +78,11 @@ var Basic = React.createClass({
                   <pre> {'<DateTimeField mode="date" />'} </pre>
               </div>
             </div>
-					</div>;
+          </div>
+      );
    }
-
-});
-
+}
 
 
-React.render(React.createFactory(Basic)(), document.getElementById('example'));
+
+React.render(React.createFactory(Basic)(), document.getElementById("example"));

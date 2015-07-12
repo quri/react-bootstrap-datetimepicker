@@ -1,21 +1,18 @@
-var DateTimePickerMonths, React, moment;
+import React, { Component, PropTypes } from "react";
+import classnames from "classnames";
+import moment from "moment";
 
-React = require('react/addons');
+export default class DateTimePickerMonths extends Component {
+  static propTypes = {
+    subtractYear: PropTypes.func.isRequired,
+    addYear: PropTypes.func.isRequired,
+    viewDate: PropTypes.object.isRequired,
+    selectedDate: PropTypes.object.isRequired,
+    showYears: PropTypes.func.isRequired,
+    setViewMonth: PropTypes.func.isRequired
+  }
 
-moment = require('moment');
-
-var classnames = require('classnames');
-
-DateTimePickerMonths = React.createClass({
-  propTypes: {
-    subtractYear: React.PropTypes.func.isRequired,
-    addYear: React.PropTypes.func.isRequired,
-    viewDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
-    showYears: React.PropTypes.func.isRequired,
-    setViewMonth: React.PropTypes.func.isRequired
-  },
-  renderMonths: function() {
+  renderMonths = () => {
     var classes, i, month, months, monthsShort;
     month = this.props.selectedDate.month();
     monthsShort = moment.monthsShort();
@@ -24,16 +21,17 @@ DateTimePickerMonths = React.createClass({
     while (i < 12) {
       classes = {
         month: true,
-        'active': i === month && this.props.viewDate.year() === this.props.selectedDate.year()
+        "active": i === month && this.props.viewDate.year() === this.props.selectedDate.year()
       };
       months.push(<span key={i} className={classnames(classes)} onClick={this.props.setViewMonth}>{monthsShort[i]}</span>);
       i++;
     }
     return months;
-  },
-  render: function() {
+  }
+
+  render() {
     return (
-    <div className="datepicker-months" style={{display: 'block'}}>
+    <div className="datepicker-months" style={{display: "block"}}>
           <table className="table-condensed">
             <thead>
               <tr>
@@ -54,6 +52,5 @@ DateTimePickerMonths = React.createClass({
         </div>
     );
   }
-});
+}
 
-module.exports = DateTimePickerMonths;

@@ -1,65 +1,64 @@
-var DateTimePickerHours, DateTimePickerMinutes, DateTimePickerTime, Glyphicon, React;
+import React, { Component, PropTypes } from "react";
+import { Glyphicon } from "react-bootstrap";
+import DateTimePickerMinutes from "./DateTimePickerMinutes";
+import DateTimePickerHours from "./DateTimePickerHours";
+import Constants from "./Constants.js";
 
-React = require('react');
+export default class DateTimePickerTime extends Component {
+  static propTypes = {
+    setSelectedHour: PropTypes.func.isRequired,
+    setSelectedMinute: PropTypes.func.isRequired,
+    subtractHour: PropTypes.func.isRequired,
+    addHour: PropTypes.func.isRequired,
+    subtractMinute: PropTypes.func.isRequired,
+    addMinute: PropTypes.func.isRequired,
+    viewDate: PropTypes.object.isRequired,
+    selectedDate: PropTypes.object.isRequired,
+    togglePeriod: PropTypes.func.isRequired,
+    mode: PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME])
+  }
 
-DateTimePickerMinutes = require('./DateTimePickerMinutes');
+  state = {
+    minutesDisplayed: false,
+    hoursDisplayed: false
+  }
 
-DateTimePickerHours = require('./DateTimePickerHours');
-
-var Glyphicon = require('react-bootstrap').Glyphicon;
-
-var Constants = require('./Constants');
-
-DateTimePickerTime = React.createClass({
-  propTypes: {
-    setSelectedHour: React.PropTypes.func.isRequired,
-    setSelectedMinute: React.PropTypes.func.isRequired,
-    subtractHour: React.PropTypes.func.isRequired,
-    addHour: React.PropTypes.func.isRequired,
-    subtractMinute: React.PropTypes.func.isRequired,
-    addMinute: React.PropTypes.func.isRequired,
-    viewDate: React.PropTypes.object.isRequired,
-    selectedDate: React.PropTypes.object.isRequired,
-    togglePeriod: React.PropTypes.func.isRequired,
-    mode: React.PropTypes.oneOf([Constants.MODE_DATE, Constants.MODE_DATETIME, Constants.MODE_TIME])
-  },
-  getInitialState: function() {
-    return {
-      minutesDisplayed: false,
-      hoursDisplayed: false
-    };
-  },
-  goBack: function() {
+  goBack = () => {
     return this.setState({
       minutesDisplayed: false,
       hoursDisplayed: false
     });
-  },
-  showMinutes: function() {
+  }
+
+  showMinutes = () => {
     return this.setState({
       minutesDisplayed: true
     });
-  },
-  showHours: function() {
+  }
+
+  showHours = () => {
     return this.setState({
       hoursDisplayed: true
     });
-  },
-  renderMinutes: function() {
+  }
+
+  renderMinutes = () => {
     if (this.state.minutesDisplayed) {
       return <DateTimePickerMinutes {...this.props} onSwitch={this.goBack} />;
     } else {
       return null;
     }
-  },
-  renderHours: function() {
+  }
+
+  renderHours = () => {
     if (this.state.hoursDisplayed) {
       return <DateTimePickerHours {...this.props} onSwitch={this.goBack} />;
     } else {
       return null;
     }
-  },
-  renderPicker: function() {
+  }
+
+  renderPicker = () => {
     if (!this.state.minutesDisplayed && !this.state.hoursDisplayed) {
       return (
       <div className="timepicker-picker">
@@ -76,15 +75,15 @@ DateTimePickerTime = React.createClass({
             </tr>
 
             <tr>
-              <td><span className="timepicker-hour" onClick={this.showHours}>{this.props.selectedDate.format('h')}</span></td>
+              <td><span className="timepicker-hour" onClick={this.showHours}>{this.props.selectedDate.format("h")}</span></td>
 
               <td className="separator">:</td>
 
-              <td><span className="timepicker-minute" onClick={this.showMinutes}>{this.props.selectedDate.format('mm')}</span></td>
+              <td><span className="timepicker-minute" onClick={this.showMinutes}>{this.props.selectedDate.format("mm")}</span></td>
 
               <td className="separator"></td>
 
-              <td><button className="btn btn-primary" onClick={this.props.togglePeriod} type="button">{this.props.selectedDate.format('A')}</button></td>
+              <td><button className="btn btn-primary" onClick={this.props.togglePeriod} type="button">{this.props.selectedDate.format("A")}</button></td>
             </tr>
 
             <tr>
@@ -101,10 +100,11 @@ DateTimePickerTime = React.createClass({
       </div>
       );
     } else {
-      return '';
+      return "";
     }
-  },
-  render: function() {
+  }
+
+  render() {
     return (
         <div className="timepicker">
           {this.renderPicker()}
@@ -115,6 +115,6 @@ DateTimePickerTime = React.createClass({
         </div>
     );
   }
-});
+}
 
 module.exports = DateTimePickerTime;
