@@ -21,7 +21,7 @@ export default class DateTimePickerDays extends Component {
   }
 
   renderDays = () => {
-    var cells, classes, days, html, i, month, nextMonth, prevMonth, minDate, maxDate, row, year, _i, _len, _ref;
+    var cells, classes, days, html, month, nextMonth, prevMonth, minDate, maxDate, row, year;
     year = this.props.viewDate.year();
     month = this.props.viewDate.month();
     prevMonth = this.props.viewDate.clone().subtract(1, "months");
@@ -57,9 +57,7 @@ export default class DateTimePickerDays extends Component {
         classes.disabled = true;
       }
       if (this.props.daysOfWeekDisabled) {
-        _ref = this.props.daysOfWeekDisabled;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          i = _ref[_i];
+        for (let i = 0, len = this.props.daysOfWeekDisabled.length; i < len; i++) {
           if (prevMonth.day() === this.props.daysOfWeekDisabled[i]) {
             classes.disabled = true;
             break;
