@@ -51,15 +51,15 @@ describe("DateTimePickerMonths", function() {
       });
   });
 
-  describe('UI', function() {
-    it('renders 12 months', function() {
+  describe("UI", function() {
+    it("renders 12 months", function() {
       const monthList = TestUtils.scryRenderedDOMComponentsWithClass(months, "month");
       expect(monthList.length).toBe(12);
     });
 
-    it('rendersJanuary through December', function() {
+    it("rendersJanuary through December", function() {
       const monthList = TestUtils.scryRenderedDOMComponentsWithClass(months, "month");
-      expect(monthList.map((x) => x.props.children)).toEqual(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]);
+      expect(monthList.map((x) => x.props.children)).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]);
     });
 
     it("has an active month that is now's month", function() {
@@ -75,7 +75,7 @@ describe("DateTimePickerMonths", function() {
           setViewMonth={setViewMonthMock}
           showYears={showYearsMock}
           subtractYear={subtractYearMock}
-          viewDate={moment().add(2, 'year')}
+          viewDate={moment().add(2, "year")}
          />
       );
       const active = TestUtils.scryRenderedDOMComponentsWithClass(months, "active");
