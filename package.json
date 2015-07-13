@@ -13,8 +13,7 @@
     "build": "NODE_ENV=production webpack --output-file react-bootstrap-datetimepicker.js",
     "build-min": "NODE_ENV=production COMPRESS=1 webpack --output-file react-bootstrap-datetimepicker.min.js",
     "examples": "webpack-dev-server --config ./examples/webpack.config.js",
-    "test-watch": "./node_modules/.bin/grunt watch 2>&1 >/dev/null & karma start karma.dev.js",
-    "test": "./node_modules/.bin/grunt build && karma start karma.ci.js",
+    "test": "jest",
     "lint": "eslint ."
   },
   "keywords": [
@@ -29,14 +28,38 @@
   "peerDependencies": {
     "react": ">=0.12"
   },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "core-js/.*",
+      "<rootDir>/node_modules/react",
+      "babel",
+      "<rootDir>/node_modules/babel"
+    ],
+    "setupEnvScriptFile": "<rootDir>/jestEnvironment.js",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "testPathDirs": [
+      "src/"
+    ]
+  },
   "devDependencies": {
     "babel": "^5.6.14",
     "babel-core": "^5.6.17",
     "babel-eslint": "^3.1.23",
+    "babel-jest": "^5.3.0",
     "babel-loader": "^5.3.1",
     "babel-runtime": "^5.6.18",
     "envify": "~3.2.0",
     "eslint": "^0.24.1",
+    "eslint-plugin-jasmine": "^1.1.0",
     "eslint-plugin-react": "^2.7.0",
     "grunt": "~0.4.2",
     "grunt-amd-wrap": "^1.0.1",
@@ -50,6 +73,7 @@
     "grunt-react": "~0.10.0",
     "grunt-shell": "~0.6.4",
     "html-webpack-plugin": "^1.1.0",
+    "jest-cli": "facebook/jest#0.5.x",
     "jsx-loader": "^0.12.2",
     "react": "^0.13.3",
     "requirejs": "~2.1.9",
