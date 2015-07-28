@@ -8,3 +8,4 @@ test-built/*
 docs/*.html
 docs/assets/bundle.js
 lib/*
+/bower_components/
