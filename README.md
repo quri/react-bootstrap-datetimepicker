@@ -34,7 +34,7 @@ DateTimeField
 | **dateTime** | string  | moment().format('x') | Represents the inital dateTime, this string is then parsed by moment.js |
 | **format**   | string  | "x"     | Defines the format moment.js should use to parse and output the date to onChange |
 | **inputFormat** | string | "MM/DD/YY h:mm A" | Defines the way the date is represented in the HTML input |
-| **onChange** | function | x => console.log(x) | Callback trigger when the date changes |
+| **onChange** | function | x => console.log(x) | Callback trigger when the date changes returning new datetime |
 | **showToday** | boolean | true | Highlights today's date |
 | **daysOfWeekDisabled** | array of integer | [] | Disables clicking on some days. Goes from 0 (Sunday) to 6 (Saturday). |
 | **viewMode** | string or number | 'days' | The default view to display when the picker is shown. ('years', 'months', 'days') |
