@@ -1,0 +1,11 @@
+{
+  "env": {
+    "jasmine": true
+  },
+  "globals": {
+    "jest": false
+  },
+  plugins: [
+    "jasmine"
+  ]
+}
