@@ -62,18 +62,18 @@ export default class DateTimeField extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (moment(nextProps.dateTime, nextProps.format, true).isValid()) {
-      return this.setState({
-        viewDate: moment(nextProps.dateTime, nextProps.format, true).startOf("month"),
-        selectedDate: moment(nextProps.dateTime, nextProps.format, true),
-        inputValue: moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat)
-      });
-    }
+    let state = {};
     if (nextProps.inputFormat !== this.props.inputFormat) {
-      return this.setState({
-        inputFormat: nextProps.inputFormat
-      });
+        state.inputFormat = nextProps.inputFormat;
+        state.inputValue = moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
     }
+
+    if (moment(nextProps.dateTime, nextProps.format, true).isValid()) {
+      state.viewDate = moment(nextProps.dateTime, nextProps.format, true).startOf("month");
+      state.selectedDate = moment(nextProps.dateTime, nextProps.format, true);
+      state.inputValue = moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat ? nextProps.inputFormat : this.state.inputFormat);
+    }
+    return this.setState(state);
   }
 
 
