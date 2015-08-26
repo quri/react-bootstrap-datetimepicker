@@ -2,6 +2,28 @@ import React, { Component } from "react";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment";
 
+class ParentComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: "1990-06-05",
+      format: "YYYY-MM-DD",
+      inputFormat: "DD/MM/YYYY",
+      mode: "date"
+    };
+  }
+
+  handleChange(newDate, event) {
+    console.log("newDate", newDate, "event", event);
+    return this.setState({date: newDate});
+  }
+
+  render() {
+    const {date, format, mode, inputFormat} = this.state;
+    return <DateTimeField dateTime={date} format={format} viewMode={mode} inputFormat={inputFormat} />;
+  }
+}
+
 class Basic extends Component {
 
 	render() {
@@ -13,7 +35,44 @@ class Basic extends Component {
 								This project is a port of <a href="https://github.com/Eonasdan/bootstrap-datetimepicker">https://github.com/Eonasdan/bootstrap-datetimepicker</a> for React.js
 							</div>
 						</div>
-						<div className="row">
+            <div className="row">
+              <div className="col-xs-12">
+                Controlled Component example
+                <ParentComponent />
+                <pre>
+                  {`class ParentComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: "1990-06-05",
+      format: "YYYY-MM-DD",
+      mode: "date"
+    };
+  }
+
+  handleChange(newDate, event) {
+    console.log("newDate", newDate, "event", event);
+    return this.setState({date: newDate})
+  }
+
+  render() {
+    const {date, format, mode} = this.state;
+    return <DateTimeField dateTime={date} format={format} viewMode={mode} />;
+  }
+}`}
+                </pre>
+              </div>
+            </div>
+              <div className="row">
+                <div className="col-xs-12">
+                  Example with default Text
+                  <DateTimeField
+                    defaultText="Please select a date"
+                  />
+                  <pre> {'<DateTimeField defaultText="Please select a date" />'} </pre>
+                </div>
+              </div>
+            <div className="row">
 							<div className="col-xs-12">
 								Default Basic Example
 								<DateTimeField />
