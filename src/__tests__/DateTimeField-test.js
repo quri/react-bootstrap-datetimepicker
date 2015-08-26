@@ -6,16 +6,17 @@ const { TestUtils } = React.addons;
 describe("DateTimeField", function() {
   const moment = require("moment");
   const DateTimeField = require("../DateTimeField.js");
+  const happyDate = moment("1990-06-05 07:30");
   let parent, TestParent;
 
   beforeEach(() => {
     TestParent = React.createFactory(React.createClass({
       getInitialState() {
-        return { dateTime: moment("1990-06-05 07:30").format("x") };
+        return { dateTime: happyDate.format("x") };
       },
 
       render() {
-        return <DateTimeField dateTime={this.state.dateTime} />;
+        return <DateTimeField {...this.state} />;
       }
     }));
     parent = TestUtils.renderIntoDocument(TestParent()); // eslint-disable-line
@@ -37,6 +38,13 @@ describe("DateTimeField", function() {
      expect(input.getDOMNode().value).toBe("06/05/90 7:30 AM");
      parent.setState({dateTime: moment("1981-06-04 05:45").format("x")});
      expect(input.getDOMNode().value).toBe("06/04/81 5:45 AM");
+    });
+
+   it("changes the displayed format when inputFormat changes", function() {
+     const input = TestUtils.findRenderedDOMComponentWithTag(parent, "input");
+     expect(input.getDOMNode().value).toBe("06/05/90 7:30 AM");
+     parent.setState({inputFormat: "x"});
+     expect(input.getDOMNode().value).toBe(happyDate.format("x"));
     });
 
   });
