@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-datetimepicker",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "A bootstrap datetime picker component for React.js",
   "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
   "repository": {
@@ -56,7 +56,6 @@
     "babel-eslint": "^3.1.23",
     "babel-jest": "^5.3.0",
     "babel-loader": "^5.3.1",
-    "babel-runtime": "^5.6.18",
     "envify": "~3.2.0",
     "eslint": "^0.24.1",
     "eslint-plugin-jasmine": "^1.1.0",
@@ -81,6 +80,7 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
+    "babel-runtime": "^5.6.18",
     "classnames": "^2.1.2",
     "moment": "^2.8.2",
     "react-bootstrap": "^0.16.1"
