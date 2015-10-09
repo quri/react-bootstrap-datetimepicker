@@ -13,7 +13,7 @@ npm install react-bootstrap-datetimepicker
 
 Then
 ```javascript
-require('react-bootstrap-datetimepicker');
+var DateTimeField = require('react-bootstrap-datetimepicker');
 
 ...
 
