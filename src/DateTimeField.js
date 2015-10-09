@@ -30,7 +30,10 @@ export default class DateTimeField extends Component {
   }
 
   static propTypes = {
-    dateTime: PropTypes.string,
+    dateTime: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     onChange: PropTypes.func,
     format: PropTypes.string,
     inputProps: PropTypes.object,
