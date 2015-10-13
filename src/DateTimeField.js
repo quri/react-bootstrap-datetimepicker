@@ -11,6 +11,7 @@ export default class DateTimeField extends Component {
     showToday: true,
     viewMode: "days",
     daysOfWeekDisabled: [],
+    size: Constants.SIZE_MEDIUM,
     mode: Constants.MODE_DATETIME,
     onChange: (x) => {
       console.log(x);
@@ -45,6 +46,7 @@ export default class DateTimeField extends Component {
     direction: PropTypes.string,
     showToday: PropTypes.bool,
     viewMode: PropTypes.string,
+    size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
     daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.integer)
   }
 
@@ -307,6 +309,17 @@ export default class DateTimeField extends Component {
     });
   }
 
+  size = () => {
+    switch (this.props.size) {
+      case Constants.SIZE_SMALL:
+        return "form-group-sm";
+      case Constants.SIZE_LARGE:
+        return "form-group-lg";
+    }
+
+    return "";
+  }
+
   renderOverlay = () => {
     const styles = {
       position: "fixed",
@@ -317,7 +330,7 @@ export default class DateTimeField extends Component {
       zIndex: "999"
     };
     if (this.state.showPicker) {
-      return (<div style={styles} onClick={this.closePicker} />);
+      return (<div onClick={this.closePicker} style={styles} />);
     } else {
       return <span />;
     }
@@ -327,7 +340,7 @@ export default class DateTimeField extends Component {
     return (
           <div>
             {this.renderOverlay()}
-            <DateTimePicker ref="widget"
+            <DateTimePicker
                   addDecade={this.addDecade}
                   addHour={this.addHour}
                   addMinute={this.addMinute}
@@ -337,6 +350,7 @@ export default class DateTimeField extends Component {
                   maxDate={this.props.maxDate}
                   minDate={this.props.minDate}
                   mode={this.props.mode}
+                  ref="widget"
                   selectedDate={this.state.selectedDate}
                   setSelectedDate={this.setSelectedDate}
                   setSelectedHour={this.setSelectedHour}
@@ -358,9 +372,11 @@ export default class DateTimeField extends Component {
                   widgetClasses={this.state.widgetClasses}
                   widgetStyle={this.state.widgetStyle}
             />
-            <div className="input-group date" ref="datetimepicker">
-              <input type="text" className="form-control" onChange={this.onChange} value={this.state.inputValue} {...this.props.inputProps}/>
-              <span className="input-group-addon" onClick={this.onClick} onBlur={this.onBlur} ref="dtpbutton"><Glyphicon glyph={this.state.buttonIcon} /></span>
+            <div className={"input-group date " + this.size()} ref="datetimepicker">
+              <input className="form-control" onChange={this.onChange} type="text" value={this.state.inputValue} {...this.props.inputProps}/>
+              <span className="input-group-addon" onBlur={this.onBlur} onClick={this.onClick} ref="dtpbutton">
+                <Glyphicon glyph={this.state.buttonIcon} />
+              </span>
             </div>
           </div>
     );
