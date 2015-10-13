@@ -381,6 +381,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    };
 
+	    this.size = function () {
+	      switch (_this.props.size) {
+	        case _ConstantsJs2["default"].SIZE_SMALL:
+	          return "form-group-sm";
+	        case _ConstantsJs2["default"].SIZE_LARGE:
+	          return "form-group-lg";
+	      }
+
+	      return "";
+	    };
+
 	    this.renderOverlay = function () {
 	      var styles = {
 	        position: "fixed",
@@ -391,7 +402,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        zIndex: "999"
 	      };
 	      if (_this.state.showPicker) {
-	        return _react2["default"].createElement("div", { style: styles, onClick: _this.closePicker });
+	        return _react2["default"].createElement("div", { onClick: _this.closePicker, style: styles });
 	      } else {
 	        return _react2["default"].createElement("span", null);
 	      }
@@ -405,7 +416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        "div",
 	        null,
 	        this.renderOverlay(),
-	        _react2["default"].createElement(_DateTimePickerJs2["default"], { ref: "widget",
+	        _react2["default"].createElement(_DateTimePickerJs2["default"], {
 	          addDecade: this.addDecade,
 	          addHour: this.addHour,
 	          addMinute: this.addMinute,
@@ -415,6 +426,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          maxDate: this.props.maxDate,
 	          minDate: this.props.minDate,
 	          mode: this.props.mode,
+	          ref: "widget",
 	          selectedDate: this.state.selectedDate,
 	          setSelectedDate: this.setSelectedDate,
 	          setSelectedHour: this.setSelectedHour,
@@ -438,11 +450,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }),
 	        _react2["default"].createElement(
 	          "div",
-	          { className: "input-group date", ref: "datetimepicker" },
-	          _react2["default"].createElement("input", _extends({ type: "text", className: "form-control", onChange: this.onChange, value: this.state.inputValue }, this.props.inputProps)),
+	          { className: "input-group date " + this.size(), ref: "datetimepicker" },
+	          _react2["default"].createElement("input", _extends({ className: "form-control", onChange: this.onChange, type: "text", value: this.state.inputValue }, this.props.inputProps)),
 	          _react2["default"].createElement(
 	            "span",
-	            { className: "input-group-addon", onClick: this.onClick, onBlur: this.onBlur, ref: "dtpbutton" },
+	            { className: "input-group-addon", onBlur: this.onBlur, onClick: this.onClick, ref: "dtpbutton" },
 	            _react2["default"].createElement(_reactBootstrap.Glyphicon, { glyph: this.state.buttonIcon })
 	          )
 	        )
@@ -456,6 +468,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      showToday: true,
 	      viewMode: "days",
 	      daysOfWeekDisabled: [],
+	      size: _ConstantsJs2["default"].SIZE_MEDIUM,
 	      mode: _ConstantsJs2["default"].MODE_DATETIME,
 	      onChange: function onChange(x) {
 	        console.log(x);
@@ -465,7 +478,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: "propTypes",
 	    value: {
-	      dateTime: _react.PropTypes.string,
+	      dateTime: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
 	      onChange: _react.PropTypes.func,
 	      format: _react.PropTypes.string,
 	      inputProps: _react.PropTypes.object,
@@ -477,6 +490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      direction: _react.PropTypes.string,
 	      showToday: _react.PropTypes.bool,
 	      viewMode: _react.PropTypes.string,
+	      size: _react.PropTypes.oneOf([_ConstantsJs2["default"].SIZE_SMALL, _ConstantsJs2["default"].SIZE_MEDIUM, _ConstantsJs2["default"].SIZE_LARGE]),
 	      daysOfWeekDisabled: _react.PropTypes.arrayOf(_react.PropTypes.integer)
 	    },
 	    enumerable: true
@@ -1502,7 +1516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (minDate && prevMonth.isBefore(minDate) || maxDate && prevMonth.isAfter(maxDate)) {
 	          classes.disabled = true;
 	        }
-	        if (_this.props.daysOfWeekDisabled) classes.disabled = _this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1;
+	        if (_this.props.daysOfWeekDisabled.length > 0) classes.disabled = _this.props.daysOfWeekDisabled.indexOf(prevMonth.day()) !== -1;
 	        cells.push(_react2["default"].createElement(
 	          "td",
 	          { key: prevMonth.month() + "-" + prevMonth.date(), className: (0, _classnames2["default"])(classes), onClick: _this.props.setSelectedDate },
@@ -2298,7 +2312,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 	    MODE_DATE: "date",
 	    MODE_DATETIME: "datetime",
-	    MODE_TIME: "time"
+	    MODE_TIME: "time",
+
+	    SIZE_SMALL: "sm",
+	    SIZE_MEDIUM: "md",
+	    SIZE_LARGE: "lg"
 	};
 
 /***/ },
