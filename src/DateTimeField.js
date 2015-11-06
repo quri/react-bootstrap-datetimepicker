@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import {findDOMNode} from "react-dom";
 import moment from "moment";
 import { Glyphicon } from "react-bootstrap";
 import DateTimePicker from "./DateTimePicker.js";
@@ -262,7 +263,7 @@ export default class DateTimeField extends Component {
       this.setState({
         showPicker: true
       });
-      gBCR = this.refs.dtpbutton.getDOMNode().getBoundingClientRect();
+      gBCR = findDOMNode(this.refs.dtpbutton).getBoundingClientRect();
       classes = {
         "bootstrap-datetimepicker-widget": true,
         "dropdown-menu": true
@@ -271,7 +272,7 @@ export default class DateTimeField extends Component {
         top: gBCR.top + window.pageYOffset - document.documentElement.clientTop,
         left: gBCR.left + window.pageXOffset - document.documentElement.clientLeft
       };
-      offset.top = offset.top + this.refs.datetimepicker.getDOMNode().offsetHeight;
+      offset.top = offset.top + findDOMNode(this.refs.datetimepicker).offsetHeight;
       scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
       placePosition = this.props.direction === "up" ? "top" : this.props.direction === "bottom" ? "bottom" : this.props.direction === "auto" ? offset.top + this.refs.widget.getDOMNode().offsetHeight > window.offsetHeight + scrollTop && this.refs.widget.offsetHeight + this.refs.datetimepicker.getDOMNode().offsetHeight > offset.top ? "top" : "bottom" : void 0;
       if (placePosition === "top") {
