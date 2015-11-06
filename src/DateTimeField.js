@@ -274,9 +274,9 @@ export default class DateTimeField extends Component {
       };
       offset.top = offset.top + findDOMNode(this.refs.datetimepicker).offsetHeight;
       scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-      placePosition = this.props.direction === "up" ? "top" : this.props.direction === "bottom" ? "bottom" : this.props.direction === "auto" ? offset.top + this.refs.widget.getDOMNode().offsetHeight > window.offsetHeight + scrollTop && this.refs.widget.offsetHeight + this.refs.datetimepicker.getDOMNode().offsetHeight > offset.top ? "top" : "bottom" : void 0;
+      placePosition = this.props.direction === "up" ? "top" : this.props.direction === "bottom" ? "bottom" : this.props.direction === "auto" ? offset.top + findDOMNode(this.refs.widget).offsetHeight > window.offsetHeight + scrollTop && this.refs.widget.offsetHeight + findDOMNode(this.refs.datetimepicker).offsetHeight > offset.top ? "top" : "bottom" : void 0;
       if (placePosition === "top") {
-        offset.top = -this.refs.widget.getDOMNode().offsetHeight - this.getDOMNode().clientHeight - 2;
+        offset.top = -findDOMNode(this.refs.widget).offsetHeight - findDOMNode(this).clientHeight - 2;
         classes.top = true;
         classes.bottom = false;
         classes["pull-right"] = true;
