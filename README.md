@@ -43,6 +43,7 @@ DateTimeField
 | **minDate** | moment | undefined | The earliest date allowed for entry in the calendar view. |
 | **maxDate** | moment | undefined | The latest date allowed for entry in the calendar view. |
 | **mode** | string | undefined | Allows to selectively display only the time picker ('time') or the date picker ('date') |
+| **defaultText** | string | {dateTime} | Sets the initial value. Could be an empty string, or helper text. |
 
 Update Warning
 ===============================
