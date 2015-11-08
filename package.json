@@ -26,7 +26,7 @@
   "author": "Loïc CHOLLIER <loic@chollier.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=0.12"
+    "react": ">=0.14"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
