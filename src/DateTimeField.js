@@ -301,7 +301,7 @@ export default class DateTimeField extends Component {
   }
 
   closePicker = () => {
-    let style = Object.assign({}, this.state.widgetStyle);
+    let style = {...this.state.widgetStyle};
     style.left = -9999;
     style.display = "none";
     return this.setState({
