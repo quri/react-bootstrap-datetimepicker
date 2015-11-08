@@ -1,5 +1,7 @@
+import React from "react";
 import TestUtils from "react-addons-test-utils";
 import Constants from "../Constants.js";
+
 jest.dontMock("../DateTimePickerHours.js");
 
 describe("DateTimePickerHours", function() {
@@ -85,7 +87,7 @@ describe("DateTimePickerHours", function() {
          />
       );
       const hourList = TestUtils.scryRenderedDOMComponentsWithClass(hours, "hour");
-      expect(hourList.map((x) => x.props.children)).toEqual(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]);
+      expect(hourList.map((x) => x.textContent)).toEqual(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]);
     });
 
   });
