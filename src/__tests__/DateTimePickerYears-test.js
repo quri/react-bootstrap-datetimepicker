@@ -1,7 +1,6 @@
 jest.dontMock("moment");
-import React from "react/addons";
+import TestUtils from "react-addons-test-utils";
 jest.dontMock("../DateTimePickerYears.js");
-const { TestUtils } = React.addons;
 
 describe("DateTimePickerYears", function() {
   const moment = require("moment");

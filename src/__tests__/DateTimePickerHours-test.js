@@ -1,7 +1,6 @@
-import React from "react/addons";
+import TestUtils from "react-addons-test-utils";
 import Constants from "../Constants.js";
 jest.dontMock("../DateTimePickerHours.js");
-const { TestUtils } = React.addons;
 
 describe("DateTimePickerHours", function() {
   const DateTimePickerHours = require("../DateTimePickerHours.js");
