@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from "react";
-import {findDOMNode} from "react-dom";
 import moment from "moment";
 import classnames from "classnames";
 import DateTimePicker from "./DateTimePicker.js";
