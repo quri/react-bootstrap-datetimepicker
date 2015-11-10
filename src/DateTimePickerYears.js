@@ -22,7 +22,7 @@ export default class DateTimePickerYears extends Component {
         old: i === -1 | i === 10,
         active: this.props.selectedDate.year() === year
       };
-      years.push(<span key={year} className={classnames(classes)} onClick={this.props.setViewYear}>{year}</span>);
+      years.push(<span className={classnames(classes)} key={year}onClick={this.props.setViewYear}>{year}</span>);
       year++;
       i++;
     }

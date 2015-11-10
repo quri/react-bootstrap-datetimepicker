@@ -23,7 +23,7 @@ export default class DateTimePickerMonths extends Component {
         month: true,
         "active": i === month && this.props.viewDate.year() === this.props.selectedDate.year()
       };
-      months.push(<span key={i} className={classnames(classes)} onClick={this.props.setViewMonth}>{monthsShort[i]}</span>);
+      months.push(<span className={classnames(classes)} key={i} onClick={this.props.setViewMonth}>{monthsShort[i]}</span>);
       i++;
     }
     return months;
