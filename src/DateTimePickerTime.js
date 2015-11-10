@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from "react";
-import { Glyphicon } from "react-bootstrap";
 import DateTimePickerMinutes from "./DateTimePickerMinutes";
 import DateTimePickerHours from "./DateTimePickerHours";
 import Constants from "./Constants.js";
@@ -65,11 +64,11 @@ export default class DateTimePickerTime extends Component {
         <table className="table-condensed">
           <tbody>
             <tr>
-              <td><a className="btn" onClick={this.props.addHour}><Glyphicon glyph="chevron-up" /></a></td>
+              <td><a className="btn" onClick={this.props.addHour}><span className="glyphicon glyphicon-chevron-up" /></a></td>
 
               <td className="separator"></td>
 
-              <td><a className="btn" onClick={this.props.addMinute}><Glyphicon glyph="chevron-up" /></a></td>
+              <td><a className="btn" onClick={this.props.addMinute}><span className="glyphicon glyphicon-chevron-up" /></a></td>
 
               <td className="separator"></td>
             </tr>
@@ -87,11 +86,11 @@ export default class DateTimePickerTime extends Component {
             </tr>
 
             <tr>
-              <td><a className="btn" onClick={this.props.subtractHour}><Glyphicon glyph="chevron-down" /></a></td>
+              <td><a className="btn" onClick={this.props.subtractHour}><span className="glyphicon glyphicon-chevron-down" /></a></td>
 
               <td className="separator"></td>
 
-              <td><a className="btn" onClick={this.props.subtractMinute}><Glyphicon glyph="chevron-down" /></a></td>
+              <td><a className="btn" onClick={this.props.subtractMinute}><span className="glyphicon glyphicon-chevron-down" /></a></td>
 
               <td className="separator"></td>
             </tr>

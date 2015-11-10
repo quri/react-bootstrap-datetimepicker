@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from "react";
-import { Glyphicon } from "react-bootstrap";
 import Constants from "./Constants.js";
 
 export default class DateTimePickerHours extends Component {
@@ -14,7 +13,7 @@ export default class DateTimePickerHours extends Component {
         (
             <ul className="list-unstyled">
               <li>
-                <span className="btn picker-switch" style={{width: "100%"}} onClick={this.props.onSwitch}><Glyphicon glyph="time" /></span>
+                <span className="btn picker-switch" style={{width: "100%"}} onClick={this.props.onSwitch}><span className="glyphicon glyphicon-time" /></span>
               </li>
             </ul>
         ) :
