@@ -74,11 +74,11 @@ export default class DateTimePickerDays extends Component {
         <table className="table-condensed">
           <thead>
             <tr>
-              <th className="prev" onClick={this.props.subtractMonth}>‹</th>
+              <th className="prev" onClick={this.props.subtractMonth}><span className="glyphicon glyphicon-chevron-left" /></th>
 
               <th className="switch" colSpan="5" onClick={this.props.showMonths}>{moment.months()[this.props.viewDate.month()]} {this.props.viewDate.year()}</th>
 
-              <th className="next" onClick={this.props.addMonth}>›</th>
+              <th className="next" onClick={this.props.addMonth}><span className="glyphicon glyphicon-chevron-right" /></th>
             </tr>
 
             <tr>
