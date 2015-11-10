@@ -1,7 +1,8 @@
+import React from "react";
+import TestUtils from "react-addons-test-utils";
+
 jest.dontMock("moment");
-import React from "react/addons";
 jest.dontMock("../DateTimePickerMonths.js");
-const { TestUtils } = React.addons;
 
 describe("DateTimePickerMonths", function() {
   const moment = require("moment");
@@ -59,12 +60,12 @@ describe("DateTimePickerMonths", function() {
 
     it("rendersJanuary through December", function() {
       const monthList = TestUtils.scryRenderedDOMComponentsWithClass(months, "month");
-      expect(monthList.map((x) => x.props.children)).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]);
+      expect(monthList.map((x) => x.textContent)).toEqual(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]);
     });
 
     it("has an active month that is now's month", function() {
       const active = TestUtils.findRenderedDOMComponentWithClass(months, "active");
-      expect(active.props.children).toBe(moment().format("MMM"));
+      expect(active.textContent).toBe(moment().format("MMM"));
     });
 
     it("has no active month that if viewDate is another year than selectedDate", function() {

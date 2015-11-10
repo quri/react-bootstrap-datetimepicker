@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment";
 
@@ -157,4 +158,4 @@ class Basic extends Component {
 
 
 
-React.render(React.createFactory(Basic)(), document.getElementById("example"));
+ReactDOM.render(React.createFactory(Basic)(), document.getElementById("example"));

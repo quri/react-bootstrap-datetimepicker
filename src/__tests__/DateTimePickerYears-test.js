@@ -1,7 +1,8 @@
-jest.dontMock("moment");
-import React from "react/addons";
+import React from "react";
+import TestUtils from "react-addons-test-utils";
+
 jest.dontMock("../DateTimePickerYears.js");
-const { TestUtils } = React.addons;
+jest.dontMock("moment");
 
 describe("DateTimePickerYears", function() {
   const moment = require("moment");
@@ -56,12 +57,14 @@ describe("DateTimePickerYears", function() {
       for (let i = 0; i < 12; i++) {
         array.push(beginningDecade + i - 1);
       } // [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
-      expect(yearList.map((x) => x.props.children)).toEqual(array);
+
+      expect(yearList.map((x) => parseInt(x.textContent))).toEqual(array);
+
     });
 
     it("has an active year that is now's year", function() {
       const active = TestUtils.findRenderedDOMComponentWithClass(years, "active");
-      expect(active.props.children).toBe(parseInt(moment().format("GGGG")));
+      expect(parseInt(active.textContent)).toBe(parseInt(moment().format("GGGG")));
     });
 
     it("has no active year that if viewDate is another decade than selectedDate", function() {

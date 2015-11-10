@@ -1,7 +1,8 @@
-import React from "react/addons";
+import React from "react";
+import TestUtils from "react-addons-test-utils";
 import Constants from "../Constants.js";
+
 jest.dontMock("../DateTimePickerMinutes.js");
-const { TestUtils } = React.addons;
 
 describe("DateTimePickerMinutes", function() {
   const DateTimePickerMinutes = require("../DateTimePickerMinutes.js");
@@ -86,7 +87,7 @@ describe("DateTimePickerMinutes", function() {
          />
       );
       const minuteList = TestUtils.scryRenderedDOMComponentsWithClass(minutes, "minute");
-      expect(minuteList.map((x) => x.props.children)).toEqual(["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]);
+      expect(minuteList.map((x) => x.textContent)).toEqual(["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]);
     });
 
   });
