@@ -34,7 +34,10 @@
       "core-js/.*",
       "<rootDir>/node_modules/react",
       "babel",
-      "<rootDir>/node_modules/babel"
+      "<rootDir>/node_modules/babel",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
     ],
     "setupEnvScriptFile": "<rootDir>/jestEnvironment.js",
     "testFileExtensions": [
