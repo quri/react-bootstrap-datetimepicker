@@ -33,7 +33,7 @@ DateTimeField
 | ------------ | ------- | ------- | ----------- |
 | **dateTime** | string  | moment().format('x') | Represents the inital dateTime, this string is then parsed by moment.js |
 | **format**   | string  | "x"     | Defines the format moment.js should use to parse and output the date to onChange |
-| **inputFormat** | string | "MM/DD/YY h:mm A" | Defines the way the date is represented in the HTML input |
+| **inputFormat** | string | "MM/DD/YY h:mm A" | Defines the way the date is represented in the HTML input. It must be a format understanable by moment.js |
 | **onChange** | function | x => console.log(x) | Callback trigger when the date changes. `x` is the new datetime value. |
 | **showToday** | boolean | true | Highlights today's date |
 | **size** | string | "md" | Changes the size of the date picker input field. Sizes: "sm", "md", "lg" |
