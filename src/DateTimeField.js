@@ -323,7 +323,6 @@ export default class DateTimeField extends Component {
   }
 
   renderOverlay = () => {
-
     const styles = {
       position: "fixed",
       top: 0,
