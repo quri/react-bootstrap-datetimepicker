@@ -13,6 +13,7 @@ export default class DateTimeField extends Component {
     daysOfWeekDisabled: [],
     size: Constants.SIZE_MEDIUM,
     mode: Constants.MODE_DATETIME,
+    zIndex: 999,
     onChange: (x) => {
       console.log(x);
     }
@@ -46,6 +47,7 @@ export default class DateTimeField extends Component {
     direction: PropTypes.string,
     showToday: PropTypes.bool,
     viewMode: PropTypes.string,
+    zIndex: PropTypes.number,
     size: PropTypes.oneOf([Constants.SIZE_SMALL, Constants.SIZE_MEDIUM, Constants.SIZE_LARGE]),
     daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
   }
@@ -321,16 +323,17 @@ export default class DateTimeField extends Component {
   }
 
   renderOverlay = () => {
+
     const styles = {
       position: "fixed",
       top: 0,
       bottom: 0,
       left: 0,
       right: 0,
-      zIndex: "999"
+      zIndex: `${this.props.zIndex}`
     };
     if (this.state.showPicker) {
-      return (<div onClick={this.closePicker} style={styles} />);
+      return (<div className='bootstrap-datetimepicker-overlay' onClick={this.closePicker} style={styles} />);
     } else {
       return <span />;
     }
