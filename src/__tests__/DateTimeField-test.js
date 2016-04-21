@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import TestUtils from "react-addons-test-utils";
 
 jest.dontMock("moment");
@@ -18,6 +19,14 @@ describe("DateTimeField", function() {
      const input = TestUtils.findRenderedDOMComponentWithTag(component, "input");
      expect(input.value).toBe("06/05/90 7:30 AM");
     });
+
+    it("allows a custom zIndex to be applied to overlay", function() {
+      const component = TestUtils.renderIntoDocument(<DateTimeField zIndex={1234} />);
+	  const input = TestUtils.findRenderedDOMComponentWithClass(component, "input-group-addon");
+	  TestUtils.Simulate.click(input);
+      const overlay = TestUtils.findRenderedDOMComponentWithClass(component, "bootstrap-datetimepicker-overlay");
+      expect(ReactDOM.findDOMNode(overlay).style.zIndex).toBe('1234');
+     });
 
   });
 
